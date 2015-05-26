@@ -150,6 +150,14 @@
       <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
     </inertial>
   </link>
+<!-- STa kinect -->
+  <link name="camera_link">
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.0001"/>
+      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+    </inertial>
+  </link>
   <link name="dummyhead1">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -265,6 +273,12 @@
     <axis xyz="0 0 1"/>
     <parent link="torso"/>
     <child link="sonar_ring"/>
+  </joint>
+<!-- STa kinect -->
+  <joint name="camera_link" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0947 0 .6"/>
+    <parent link="torso"/>
+    <child link="camera_link"/>
   </joint>
   <link name="right_arm_mount">
     <!-- all defaults -->
@@ -558,9 +572,21 @@
       </material>
     </visual>
     <collision>
-      <origin xyz="0.0014 0 0.06" rpy="0 -0 0" />
+      <origin xyz="0.0014 0 0.024" rpy="1.57079632679 -0 0" />
       <geometry>
-        <box size="0.05 0.1 0.12"/>
+	<cylinder length="0.10" radius="0.027"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.0014 -0.035 0.084" rpy="0 -0 0" />
+      <geometry>
+        <cylinder length="0.062" radius="0.007"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0.0014 0.035 0.084" rpy="0 -0 0" />
+      <geometry>
+        <cylinder length="0.062" radius="0.007"/>
       </geometry>
     </collision>
     <inertial>
