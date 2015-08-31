@@ -150,14 +150,15 @@
       <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
     </inertial>
   </link>
-<!-- STa kinect -->
-  <link name="camera_link">
+<!-- STa kinect 
+  <link name="xtion">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="0.0001"/>
       <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
     </inertial>
   </link>
+-->
   <link name="dummyhead1">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -274,12 +275,13 @@
     <parent link="torso"/>
     <child link="sonar_ring"/>
   </joint>
-<!-- STa kinect -->
+<!-- STa kinect (calibrated) 
   <joint name="camera_link" type="fixed">
-    <origin rpy="0 0 0" xyz="0.0947 0 .6"/>
-    <parent link="torso"/>
-    <child link="camera_link"/>
+    <origin rpy="0.035 0.546 0.045" xyz="0.144 -0.027 0.095"/>
+    <parent link="head"/>
+    <child link="xtion"/>
   </joint>
+-->
   <link name="right_arm_mount">
     <!-- all defaults -->
  <gravity>0</gravity>
@@ -724,7 +726,9 @@
     <child link="right_gripper_base"/>
   </joint>
   <joint name="right_endpoint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.0 0 0.025"/>
+<!-- STa : add z offset when use the fingers --> 
+<!--    <origin rpy="0 0 0" xyz="0.0 0 0.025"/> --> 
+    <origin rpy="0 0 0" xyz="0.0 0 0.01"/>
     <parent link="right_gripper_base"/>
     <child link="right_gripper"/>
   </joint>
